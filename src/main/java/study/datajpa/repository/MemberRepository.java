@@ -17,10 +17,7 @@ public interface MemberRepository extends JpaRepository<Member, Long>, MemberRep
 
     /** Member 엔티티의 참조변수를 m으로 선언하고 m의 username과 age가 입력받은 값과 같은 m의 모든 속성을 조회해라.*/
     @Query("select m from Member m where m.username = :username and m.age = :age")
-    public List<Member> findUser(@Param("username") String username, @Param("age") int age);
-
-
-//    List<Member> findAllWithMember();
+    List<Member> findUser(@Param("username") String username, @Param("age") int age);
 
     @QueryHints(value = @QueryHint(name = "org.hibernate.readOnly", value = "true"))
     Member findReadOnlyByUsername(String username);

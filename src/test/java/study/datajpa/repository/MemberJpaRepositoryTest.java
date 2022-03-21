@@ -7,6 +7,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.entity.Member;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
@@ -22,10 +24,8 @@ class MemberJpaRepositoryTest {
         Member member = new Member("choi");
         Member savedMember = memberJpaRepository.save(member);
 
-        Member findMember = memberJpaRepository.find(savedMember.getId());
+        Optional<Member> findMember = Optional.ofNullable(memberJpaRepository.find(savedMember.getId()));
 
-        assertThat(findMember.getId()).isEqualTo(member.getId());
-        assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
         assertThat(findMember).isEqualTo(member);
     }
 }

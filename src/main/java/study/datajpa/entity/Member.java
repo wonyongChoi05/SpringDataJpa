@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(of = {"id", "username", "age"})
 public class Member {
 
@@ -27,6 +26,9 @@ public class Member {
 
     public Member(String username) {
         this.username = username;
+    }
+
+    public Member() {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
