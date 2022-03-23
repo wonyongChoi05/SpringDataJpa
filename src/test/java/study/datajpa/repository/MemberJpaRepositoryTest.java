@@ -1,5 +1,6 @@
 package study.datajpa.repository;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,6 +8,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.entity.Member;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
@@ -20,12 +22,14 @@ class MemberJpaRepositoryTest {
     MemberJpaRepository memberJpaRepository;
 
     @Test
-    public void Member(){
-        Member member = new Member("choi");
-        Member savedMember = memberJpaRepository.save(member);
+    public void 회원_조회(){
+        Member member = new Member();
+        member.setUsername("asdf");
+        memberJpaRepository.save(member);
 
-        Optional<Member> findMember = Optional.ofNullable(memberJpaRepository.find(savedMember.getId()));
+        List<Member> findMembers = memberJpaRepository.findAll();
 
-        assertThat(findMember).isEqualTo(member);
+        Assertions.assertThat(findMembers.get(0).getUsername()).isEqualTo("asdf");
     }
+
 }
