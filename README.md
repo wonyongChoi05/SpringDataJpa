@@ -1,7 +1,8 @@
 <h1> Spring Data JPA 적용 <h1>
   
-JPA-API 레파지토리의 순수 JPA에 Spring Data Jpa를 적용
-  
+### JPA-API 레파지토리의 순수 JPA에 Spring Data Jpa를 적용
+
+###   
 CRUD에 관련된 코드들의 양이 현저하게 줄어듦
   
 ### 해야할 것
